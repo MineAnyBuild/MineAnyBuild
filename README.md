@@ -1,3 +1,6 @@
 # MineAnyBuild
 code and benchmark for MineAnyBuild.
-We will clean the codes and release them soon in two weeks. (before the reviewing time)
+
+We partly provide the core evaluation codes now.
+
+TODO: We will clean the rest of codes and release all of them soon in two weeks. (before the reviewing time)
