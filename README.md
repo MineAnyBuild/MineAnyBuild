@@ -44,7 +44,7 @@ Spatial Planning is a crucial part in the field of spatial intelligence, which r
 
 ## 🚨 TODOs (Urgency, To-be-completed in two weeks / June 2025)
 - [ ] Remaining codes for evaluation of MLLM-based agents
-- [ ] Remaining codes for data curation
+- [ ] Remaining codes for data curation (w/ example JSON files)
 - [ ] Remaining codes for inference of MLLM-based agents
 
 
@@ -53,7 +53,7 @@ Spatial Planning is a crucial part in the field of spatial intelligence, which r
 - [ ] Docs of instructions for Replay Mod (June 2025)
 - [ ] RL environment codes for Mineflayer (June~July 2025)
 - [ ] Fix known bugs
-- [ ] Debugging and provide adaptation to normal python codes (except for Jupyter notebook)
+- [ ] Debugging and provide adaptation to normal python codes (w/o Jupyter notebook)
 - [ ] MineRL/MineDojo codes (in several months)
 
 
