@@ -42,10 +42,10 @@ Spatial Planning is a crucial part in the field of spatial intelligence, which r
 
 
 
-## 🚨 TODOs (Urgency, To-be-completed in two weeks / June 2025)
-- [ ] Remaining codes for evaluation of MLLM-based agents
+## 🚨 TODOs (Urgency, To-be-completed in June 2025)
+- [ ] Remaining codes for evaluation of MLLM-based agents (5 tasks)
 - [ ] Remaining codes for data curation (w/ example JSON files)
-- [ ] Remaining codes for inference of MLLM-based agents
+- [ ] Remaining codes for inference of MLLM-based agents (5 tasks)
 
 
 ## ✅ TODOs (Future, in several months)
@@ -160,14 +160,11 @@ pip install javascript
 # Citation
 If you find this work useful, please consider citing:
 ```bibtex
-@misc{wei2025mineanybuildbenchmarkingspatialplanning,
-      title={MineAnyBuild: Benchmarking Spatial Planning for Open-world AI Agents}, 
-      author={Ziming Wei and Bingqian Lin and Zijian Jiao and Yunshuang Nie and Liang Ma and Yuecheng Liu and Yuzheng Zhuang and Xiaodan Liang},
-      year={2025},
-      eprint={2505.20148},
-      archivePrefix={arXiv},
-      primaryClass={cs.AI},
-      url={https://arxiv.org/abs/2505.20148}, 
+@article{wei2025mineanybuild,
+  title={MineAnyBuild: Benchmarking Spatial Planning for Open-world AI Agents},
+  author={Wei, Ziming and Lin, Bingqian and Jiao, Zijian and Nie, Yunshuang and Ma, Liang and Liu, Yuecheng and Zhuang, Yuzheng and Liang, Xiaodan},
+  journal={arXiv preprint arXiv:2505.20148},
+  year={2025}
 }
 ```
 
