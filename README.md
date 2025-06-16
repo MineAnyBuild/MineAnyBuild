@@ -43,6 +43,7 @@ Spatial Planning is a crucial part in the field of spatial intelligence, which r
 
 
 ## 🚨 TODOs (Urgency, To-be-completed in June 2025)
+**Sorry for the delay due to some final exams. We'll make up this part as soon as possible.**
 - [ ] Remaining codes for evaluation of MLLM-based agents (5 tasks)
 - [ ] Remaining codes for data curation (w/ example JSON files)
 - [ ] Remaining codes for inference of MLLM-based agents (5 tasks)
@@ -122,7 +123,8 @@ pip install javascript
 
 
 # Running codes
-(We will supplement the following content based on the subsequent code releases in two weeks.)
+(We will supplement the following content based on the subsequent code releases.)
+(**Sorry for the delay due to some final exams. We'll make up this part as soon as possible.**)
 ## Evaluation
 
 ### Executable Spatial Plan Generation, Creativity and Spatial Understanding tasks
