@@ -46,7 +46,8 @@ Spatial Planning is a crucial part in the field of spatial intelligence, which r
 **Sorry for the delay due to some final exams. We'll make up this part as soon as possible.**
 - [ ] Remaining codes for evaluation of MLLM-based agents (5 tasks)
 - [ ] Remaining codes for data curation (w/ example JSON files)
-- [ ] Remaining codes for inference of MLLM-based agents (5 tasks)
+- [x] Remaining codes for inference of MLLM-based agents (5 tasks)
+- [ ] Icons&urls for HuggingFace datasets, project webpage.
 
 
 ## ✅ TODOs (Future, in several months)
@@ -117,7 +118,7 @@ npm install mineflayer
 ```
 conda create -n mineflayer python=3.10
 conda activate mineflayer
-pip install javascript
+pip install -r requirements.txt
 ```
 
 
@@ -127,34 +128,75 @@ pip install javascript
 (**Sorry for the delay due to some final exams. We'll make up this part as soon as possible.**)
 ## Evaluation
 
+run the functions in /mineanybuild/evaluator.py
+
+```
+
+
+```
+
 ### Executable Spatial Plan Generation, Creativity and Spatial Understanding tasks
+
+```
+
+
+
+```
+
+
 
 
 ### Spatial Reasoning tasks
 
 
+
+
+
+
 ### Spatial Commonsense tasks
+
+
+
 
 
 ## Data curation
 
-### Autonomous Generation
 
+
+
+
+### Autonomous Generation
+run /data_curation/customize_data.ipynb 
+
+```
+
+```
 
 ### Instruction Generation
 
 
 ## Inference of MLLM-based agents
 
+
+
+
 ### Proprietary MLLMs
 
+Run `prompter.py` specifying the task of MineAnyBuild. Please specify the input and output file/directories for each task function.
 
-
+```
+python /mineanybuild/prompter.py --task [Spatial_Understanding|Spatial_Reasoning|Creativity|Executable_Spatial_Plan_Generation|Spatial_Commonsense]
+```
 
 ### Open-source MLLMs
 
+Run the following code based on the type of open-source models you need to run.
 
-
+```
+python /mineanybuild/internvl.py --task [Spatial_Understanding|Spatial_Reasoning|Creativity|Executable_Spatial_Plan_Generation|Spatial_Commonsense]
+python /mineanybuild/qwenvl.py --task [Spatial_Understanding|Spatial_Reasoning|Creativity|Executable_Spatial_Plan_Generation|Spatial_Commonsense]
+python /mineanybuild/llavaov.py --task [Spatial_Understanding|Spatial_Reasoning|Creativity|Executable_Spatial_Plan_Generation|Spatial_Commonsense]
+```
 
 
 
