@@ -24,9 +24,16 @@
 <sup>&#9993&#160;</sup>Corresponding author&#160;&#160;</span>
 <br/>
 <div align="center">
+    <a href="https://mineanybuild.github.io" target="_blank">
+    <img src="https://img.shields.io/badge/Project-MineAnyBuild-red" alt="Project"></a>
     <a href="https://arxiv.org/abs/2505.20148" target="_blank">
     <img src="https://img.shields.io/badge/Paper-arXiv-deepgreen" alt="Paper arXiv"></a>
+    <a href="https://huggingface.co/datasets/SaDil/MineAnyBuild">
+    <img src="https://img.shields.io/badge/%F0%9F%A4%97-Dataset-orange" alt="Dataset"></a>
+    <a href="https://github.com/MineAnyBuild/MineAnyBuild">
+    <img src="https://img.shields.io/badge/Python-3.10-blue.svg" alt="Python Version"></a>
 </div>
+
 </div>
 
 ______________________________________________________________________
@@ -47,13 +54,15 @@ Spatial Planning is a crucial part in the field of spatial intelligence, which r
 - [ ] Remaining codes for evaluation of MLLM-based agents (5 tasks)
 - [ ] Remaining codes for data curation (w/ example JSON files)
 - [x] Remaining codes for inference of MLLM-based agents (5 tasks)
-- [ ] Icons&urls for HuggingFace datasets, project webpage.
+- [x] Icons&urls for HuggingFace datasets, project webpage.
+- [ ] Upload files to Google Drive (e.g., pure map for evaluation).
 
 
 ## ✅ TODOs (Future, in several months)
 
-- [ ] Docs of instructions for Replay Mod (June 2025)
-- [ ] RL environment codes for Mineflayer (June~July 2025)
+- [ ] Docs of instructions for Replay Mod (June~July 2025)
+- [ ] Optimization of the use of visualization tools (timer in Replay Mod code, viewer)
+- [ ] RL environment codes for Mineflayer (Jun.~Aug. 2025)
 - [ ] Fix known bugs
 - [ ] Debugging and provide adaptation to normal python codes (w/o Jupyter notebook)
 - [ ] MineRL/MineDojo codes (in several months)
@@ -72,11 +81,9 @@ ______________________________________________________________________
 - [Running codes](#running-codes)
   - [Evaluation](#evaluation)
     - [Executable Spatial Plan Generation, Creativity and Spatial Understanding tasks](#executable-spatial-plan-generation-creativity-and-spatial-understanding-tasks)
-    - [Spatial Reasoning tasks](#spatial-reasoning-tasks)
-    - [Spatial Commonsense tasks](#spatial-commonsense-tasks)
+    - [Spatial Reasoning task](#spatial-reasoning-task)
+    - [Spatial Commonsense task](#spatial-commonsense-task)
   - [Data curation](#data-curation)
-    - [Autonomous Generation](#autonomous-generation)
-    - [Instruction Generation](#instruction-generation)
   - [Inference of MLLM-based agents](#inference-of-mllm-based-agents)
     - [Proprietary MLLMs](#proprietary-mllms)
     - [Open-source MLLMs](#open-source-mllms)
@@ -124,36 +131,50 @@ pip install -r requirements.txt
 
 
 # Running codes
-(We will supplement the following content based on the subsequent code releases.)
+
 (**Sorry for the delay due to some final exams. We'll make up this part as soon as possible.**)
+
 ## Evaluation
-
-run the functions in /mineanybuild/evaluator.py
-
-```
-
-
-```
+For different tasks in our MineAnyBuild, please conduct evaluation according to the following steps respectively.
 
 ### Executable Spatial Plan Generation, Creativity and Spatial Understanding tasks
 
+
+1. Start the Minecraft game and record the video with Replay Mod (recommended currently). 
+    <span style="font-family: 'Georgia', serif; font-size: 14px;">1\) Start the recoding in Pause Menu of Minecraft game.
+    2\) Run `/mineanybuild/mineflayer.ipynb` and specify the starting frame.
+    3\) Stop the recording when the notebook cells finish executing.
+    4\) Save and render the video in Replay Mod Menu.</span>
+    <span style="font-family: 'Times New Roman', serif; font-size: 14px;"><i> (For the concrete instructions, please refer to the [Replay Mod documentation](https://www.replaymod.com/) and Section B.3.2 in the Supplementary Material. We will provide a Doc for usage instructions of Replay Mod in several weeks.)</i></span>
+   
+
+2. Video Segmentation
+    <span style="font-family: 'Georgia', serif; font-size: 14px;">Split the video into multiple frames and match each frame to its corresponding building structure. We provide an example of using this in `/mineanybuild/utils.py`. You can use it to match automatically or conduct manual matching selection if less data is to be tested.</span>
+
+
+
+3. Run the functions/scripts in `/mineanybuild/evaluator.py` following the below instructions.
+    ```
+    python /mineanybuild/evaluator.py --task [Spatial_Understanding|Creativity|Executable_Spatial_Plan_Generation]
+    ```
+
+
+### Spatial Reasoning task
+
+
+1. Cauculate the SR(Success Rate) of the Spatial Reasoning task by running the following code.
+```
+
 ```
 
 
+### Spatial Commonsense task
+1. 
+    ```
+    python /mineanybuild/evaluator.py --task Spatial_Commonsense
+    ```
 
-```
-
-
-
-
-### Spatial Reasoning tasks
-
-
-
-
-
-
-### Spatial Commonsense tasks
+2. Cauculate the SR(Success Rate) of the Spatial Reasoning task by running the following code.
 
 
 
@@ -162,23 +183,19 @@ run the functions in /mineanybuild/evaluator.py
 ## Data curation
 
 
+1. run `/data_curation/customize_data.ipynb` to
 
 
+2. instruction
 
-### Autonomous Generation
-run /data_curation/customize_data.ipynb 
 
-```
+3. difficulty factor
 
-```
 
-### Instruction Generation
 
 
 ## Inference of MLLM-based agents
-
-
-
+Run the following code to perform inference for MLLM-based agents.
 
 ### Proprietary MLLMs
 
@@ -190,7 +207,7 @@ python /mineanybuild/prompter.py --task [Spatial_Understanding|Spatial_Reasoning
 
 ### Open-source MLLMs
 
-Run the following code based on the type of open-source models you need to run.
+Run the following code based on the type of open-source MLLMs you want to run.
 
 ```
 python /mineanybuild/internvl.py --task [Spatial_Understanding|Spatial_Reasoning|Creativity|Executable_Spatial_Plan_Generation|Spatial_Commonsense]
