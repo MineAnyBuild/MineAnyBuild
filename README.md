@@ -88,7 +88,6 @@ ______________________________________________________________________
     - [Proprietary MLLMs](#proprietary-mllms)
     - [Open-source MLLMs](#open-source-mllms)
 - [Citation](#citation)
-- [Acknowledgement](#acknowledgement)
 
 
 
@@ -135,16 +134,18 @@ pip install -r requirements.txt
 (**Sorry for the delay due to some final exams. We'll make up this part as soon as possible.**)
 
 ## Evaluation
+You should run the [Inference of MLLM-based agents](#inference-of-mllm-based-agents) first to generate the responses of MLLM-based agents.
+
 For different tasks in our MineAnyBuild, please conduct evaluation according to the following steps respectively.
 
 ### Executable Spatial Plan Generation, Creativity and Spatial Understanding tasks
 
 
 1. Start the Minecraft game and record the video with Replay Mod (recommended currently). 
-    <span style="font-family: 'Georgia', serif; font-size: 14px;">1\) Start the recoding in Pause Menu of Minecraft game.
-    2\) Run `/mineanybuild/mineflayer.ipynb` and specify the starting frame.
-    3\) Stop the recording when the notebook cells finish executing.
-    4\) Save and render the video in Replay Mod Menu.</span>
+    <span style="font-family: 'Georgia', serif; font-size: 14px;"><br>1\) Start the recoding in Pause Menu of Minecraft game.
+    2\) Run `/mineanybuild/mineflayer.ipynb` and specify the starting frame.<br>
+    3\) Stop the recording when the notebook cells finish executing.<br>
+    4\) Save and render the video in Replay Mod Menu.<br></span>
     <span style="font-family: 'Times New Roman', serif; font-size: 14px;"><i> (For the concrete instructions, please refer to the [Replay Mod documentation](https://www.replaymod.com/) and Section B.3.2 in the Supplementary Material. We will provide a Doc for usage instructions of Replay Mod in several weeks.)</i></span>
    
 
@@ -199,11 +200,15 @@ Run the following code to perform inference for MLLM-based agents.
 
 ### Proprietary MLLMs
 
-Run `prompter.py` specifying the task of MineAnyBuild. Please specify the input and output file/directories for each task function.
+1. Run `/mineanybuild/prompter.py` specifying the task of MineAnyBuild. Please specify the input and output file/directories for each task function.
 
 ```
 python /mineanybuild/prompter.py --task [Spatial_Understanding|Spatial_Reasoning|Creativity|Executable_Spatial_Plan_Generation|Spatial_Commonsense]
 ```
+
+
+2. Run the `json_parser_blueprint` function in `/mineanybuild/utils.py` to transform the response of MLLM-based agents into *blueprint* 3D matrix in JSON format.
+
 
 ### Open-source MLLMs
 
@@ -229,5 +234,5 @@ If you find this work useful, please consider citing:
 }
 ```
 
-# Acknowledgement
-Some of the codes are built upon [APT](https://github.com/spearsheep/APT-Architectural-Planning-LLM-Agent). Thanks them for their great works!
+<!-- # Acknowledgement -->
+<!-- Some of the codes are built upon [APT](https://github.com/spearsheep/APT-Architectural-Planning-LLM-Agent). Thanks them for their great works! -->
