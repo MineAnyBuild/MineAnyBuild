@@ -5,6 +5,9 @@ import requests
 import base64
 import json
 import time
+import argparse
+from tqdm import tqdm
+
 
 # Fill in your api_url and api_key here
 api_url = ''
@@ -490,7 +493,6 @@ def test_spatial_commonsense(output_root='./_spatial_commonsense', input_root='.
 
 
 def test_spatial_reasoning(images_root='./data/images/reasoning', task_data='./task/Task_Spatial_Reasoning.json', output_root='_spatial_reasoning/results.json', proprietary_models=['claude-3-5-sonnet', 'claude-3-7-sonnet-latest', 'gemini-1.5-flash-latest', 'gemini-1.5-pro', 'gemini-2.0-flash', 'gpt-4o', 'gpt-4o-mini']):
-    from tqdm import tqdm
     OurLLM = {pm:MLLMAgent(model_name=pm) for pm in proprietary_models}
     with open(task_data, 'r') as f1:
         vqa_data = json.load(f1)
@@ -516,15 +518,17 @@ def test_spatial_reasoning(images_root='./data/images/reasoning', task_data='./t
 
 
 if __name__ == '__main__':
-    ##########################
-    # Uncomment the statements below to test tasks
-    ##########################
+    parser = argparse.ArgumentParser(description="Inference scripts for MineAnyBuild tasks")
+    parser.add_argument('--task', type=str, choices=['Spatial_Understanding', 'Creativity', 'Executable_Spatial_Plan_Generation', 'Spatial_Commonsense', 'Spatial_Reasoning'], required=True, help="Tasks of MineAnyBuild")
+    args = parser.parse_args()
+
+    task_map = {
+        'Spatial_Understanding': lambda: test_architectures_1("Spatial_Understanding"),
+        # 'Spatial_Understanding': lambda: test_architectures_2("Spatial_Understanding"),
+        'Creativity': lambda: test_architectures_1("Creativity"), 
+        'Executable_Spatial_Plan_Generation': lambda: test_architectures_1("Executable_Spatial_Plan_Generation"),
+        'Spatial_Commonsense': test_spatial_commonsense,
+        'Spatial_Reasoning': test_spatial_reasoning
+    }
     
-    # test_architectures_1("Spatial_Understanding")
-    # test_architectures_1("Creativity")
-    # test_architectures_1("Executable_Spatial_Plan_Generation")
-    # test_architectures_2("Spatial_Understanding")
-    # test_architectures_2("Creativity")
-    # test_architectures_2("Executable_Spatial_Plan_Generation")
-    # test_spatial_commonsense()
-    test_spatial_reasoning()
+    task_map[args.task]()

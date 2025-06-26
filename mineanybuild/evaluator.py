@@ -5,6 +5,10 @@ import requests
 import base64
 import json
 import time
+from tqdm import tqdm
+import argparse
+from ast import literal_eval
+
 
 # Fill in your api_url and api_key here
 api_url = ''
@@ -292,9 +296,57 @@ class MLLMAgent:
 #################
 # Test script examples for different tasks
 
+def critic_spatial_tasks(task, clipped_images_root='/selected-frames', input_root='architectures.json', output_root='_output/proprietary/test_assets', proprietary_models = ['claude-3-5-sonnet', 'claude-3-7-sonnet-latest', 'gemini-1.5-flash-latest', 'gemini-1.5-pro', 'gemini-2.0-flash', 'gpt-4o', 'gpt-4o-mini']):
+    '''
+    Evaluate MLLM-based agents of the following tasks:
+    1. Executable Spatial Plan Generation
+    2. Creativity
+    3. Spatial Understanding
+
+    '''
+
+    gpt_41 = MLLMAgent(model_name='gpt-4.1')
+    if not os.path.exists(output_root):
+        os.makedirs(output_root)
+
+    with open(input_root, 'r') as f1:
+        architectures_raw_data = json.load(f1)    
+    architectures_data = {item['id']: item for item in architectures_raw_data}
+
+    gt_image_root = os.path.join(os.path.dirname(input_root), "task", "images")
+
+    Results_of_Tasks = {pm:{} for pm in proprietary_models}
+    output_path = os.path.join(output_root, '/Results_Task_' + task.replace(" ", "_") + '.json')
+
+    images = os.listdir(clipped_images_root)
+    for image in tqdm(images):
+        arch_image = os.path.join(clipped_images_root, image)
+        task = image.split("$")[0]
+        arch_id = image.split("$")[1].split('.json')[0]
+        model_name = image.split("$")[2].split('.jpg')[0]
+
+        if task in ['Spatial_Understanding', 'Executable_Spatial_Plan_Generation']:
+            ref_image = gt_image_root + architectures_data[arch_id]["image"]
+        instruction = architectures_data[arch_id]["instructions"]
+
+        
+        if task == 'Creativity':
+            payload = gpt_41.Critic_Scoring_Creativity(instruction, arch_image)
+            output = gpt_41(payload)
+            Results_of_Tasks[model_name][arch_id] = output
+        elif task == 'Spatial Understanding':
+            payload = gpt_41.Critic_Scoring_Spatial_Understanding(instruction, arch_image, ref_image)
+            output = gpt_41(payload)
+            Results_of_Tasks[model_name][arch_id] = output
+        elif task == 'Executable Spatial Plan Generation':
+            payload = gpt_41.Critic_Scoring_Spatial_Plan(instruction, arch_image, ref_image)
+            output = gpt_41(payload)
+            Results_of_Tasks[model_name][arch_id] = output
+
+    with open(output_path, 'w') as f1:
+        json.dump(Results_of_Tasks, f1, indent=4) 
 
 
-    
 
 def critic_spatial_commonsense(results_root='_spatial_commonsense/results.json', task_root='./task/Task_Spatial_Commonsense.json', output_path='_spatial_commonsense/critic_results.json'):
     '''
@@ -378,13 +430,114 @@ def critic_spatial_commonsense_opensource(results_root='_spatial_commonsense', t
         json.dump(out, f3, indent=4)
     
 
+def calculate_scores_spatial_reasoning(input_results_filepath, eval_data_filepath, proprietary_models = ['claude-3-5-sonnet', 'claude-3-7-sonnet-latest']):
+    with open(input_results_filepath, 'r') as f1:
+        results = json.load(f1)
+
+    with open(eval_data_filepath, 'r') as f2:
+        data = json.load(f2)
+
+    answers = {item["id"]:item["answer"] for item in data}
+
+    total = {k:0 for k in proprietary_models}
+    for k, v in results.items():
+        ans = answers[k]
+        print(k)
+        for k1, v1 in v.items():
+            if ans == v1.strip():
+                total[k1] += 1
+
+    scores = {k:v/len(data) for k, v in total.items()}
+    print(scores)
+
+
+
+def calculate_scores_spatial_commonsense(input_results_filepath, models = ["InternVL2_5-1B", "InternVL2_5-2B", "InternVL2_5-4B", "Qwen2.5-VL-3B-Instruct"]):
+    with open(input_results_filepath, 'r') as f1:
+        data = json.load(f1)
+
+    out = {k:0 for k in models}
+    sr = {k:0 for k in models}
+
+    for k, v in data.items():   # k: model_name
+        for k1, v1 in v.items():
+            out[k] += v1['score']
+            if v1['score'] >= 7: # we specify the score>7 as success.
+                sr[k] += 1
+
+    scores = {k:v/50 for k, v in out.items()}
+    print(scores)
+    srs = {k:v/50 for k, v in sr.items()}
+    # print(srs)
+
+
+
+def calculate_scores_creativity(input_dir, models=['claude-3-5-sonnet', 'claude-3-7-sonnet-latest', 'gemini-1.5-flash-latest', 'gemini-1.5-pro', 'gemini-2.0-flash', 'gpt-4o', 'gpt-4o-mini']):
+    with open(input_dir, 'r') as f1:
+        data = json.load(f1)
+    out = {k:0 for k in models}
+    test_num = {k:0 for k in models}
+    for k1, v1 in data.items():
+        test_num[k1] = len(v1)
+        for k2, v2 in v1.items():
+            v2 = literal_eval(v2)
+            score = v2["Creativity"]["grade"]*0.8 + v2["Completeness"]["grade"]*0.05 + v2["Complexity"]["grade"]*0.05 + v2["Architecture Structure"]["grade"]*0.05 + v2["Overall Aesthetic, Atmosphere and Fidelity"]["grade"]*0.05
+            out[k1] += score
+
+    out = {k:v/test_num[k] for k, v in out.items()}
+    print(out)
+
+
+def calculate_scores_spatial_plan(input_dir, models=['claude-3-5-sonnet', 'claude-3-7-sonnet-latest', 'gemini-1.5-flash-latest', 'gemini-1.5-pro', 'gemini-2.0-flash', 'gpt-4o', 'gpt-4o-mini']):
+    with open(input_dir, 'r') as f1:
+        data = json.load(f1)
+    out = {k:0 for k in models}
+    test_num = {k:0 for k in models}
+    for k1, v1 in data.items():
+        test_num[k1] = len(v1)
+        for k2, v2 in v1.items():
+            v2 = literal_eval(v2)
+            score = v2["Completeness(Instruction Following)"]["grade"]*0.3 + v2["Complexity"]["grade"]*0.3 + v2["Overall Aesthetic, Atmosphere and Fidelity"]["grade"]*0.4
+            out[k1] += score
+
+    out = {k:v/test_num[k] for k, v in out.items()}
+
+    print(out)
+
+
+def calculate_scores_spatial_understanding(input_dir, models=['claude-3-5-sonnet', 'claude-3-7-sonnet-latest', 'gemini-1.5-flash-latest', 'gemini-1.5-pro', 'gemini-2.0-flash', 'gpt-4o', 'gpt-4o-mini']):
+    with open(input_dir, 'r') as f1:
+        data = json.load(f1)
+    out = {k:0 for k in models}
+    test_num = {k:0 for k in models}
+    for k1, v1 in data.items():
+        test_num[k1] = len(v1)
+        for k2, v2 in v1.items():
+            v2 = literal_eval(v2)
+            score = v2["Instruction Following(Completeness)"]["grade"]
+            out[k1] += score
+    out = {k:v/test_num[k] for k, v in out.items()}
+
+    print(out)
+
+
+
 
 
 if __name__ == '__main__':
-    ##########################
-    # Uncomment the statements below to evaluate each tasks
-    ##########################
+    parser = argparse.ArgumentParser(description="Evaluation scripts for MineAnyBuild tasks")
+    parser.add_argument('--task', type=str, choices=['Spatial_Understanding', 'Creativity', 'Executable_Spatial_Plan_Generation', 'Spatial_Commonsense', 'Spatial_Reasoning'], required=True, help="Tasks of MineAnyBuild")
+    args = parser.parse_args()
+
+    task_map = {
+        'Spatial_Understanding': lambda: critic_spatial_tasks("Spatial_Understanding"),
+        'Creativity': lambda: critic_spatial_tasks("Creativity"), 
+        'Executable_Spatial_Plan_Generation': lambda: critic_spatial_tasks("Executable_Spatial_Plan_Generation"),
+        'Spatial_Commonsense': critic_spatial_commonsense
+    }
     
+    task_map[args.task]()
 
 
-    critic_spatial_commonsense()
+
+
