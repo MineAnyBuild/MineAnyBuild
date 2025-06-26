@@ -1,7 +1,7 @@
 <div align="center">
 <h2 align="center">
    <b>MineAnyBuild: Benchmarking Spatial Planning for Open-world AI Agents</b>
-   <!-- <br /> <font size=3>Under Review</font></b>  -->
+   <!-- <br /> <b><font size=3>Under Review</font></b>  -->
 </h2>
 <div>
 <a href="http://sadil13.github.io/" target="_blank">Ziming&#160;Wei</a><sup>1*</sup>,
@@ -51,21 +51,21 @@ Spatial Planning is a crucial part in the field of spatial intelligence, which r
 
 ## 🚨 TODOs (Urgency, To-be-completed in June 2025)
 **Sorry for the delay due to some final exams. We'll make up this part as soon as possible.**
-- [ ] Remaining codes for evaluation of MLLM-based agents (5 tasks)
+- [x] Remaining codes for evaluation of MLLM-based agents (5 tasks)
 - [ ] Remaining codes for data curation (w/ example JSON files)
 - [x] Remaining codes for inference of MLLM-based agents (5 tasks)
 - [x] Icons&urls for HuggingFace datasets, project webpage.
 - [ ] Upload files to Google Drive (e.g., pure map for evaluation).
 
 
-## ✅ TODOs (Future, in several months)
-
-- [ ] Docs of instructions for Replay Mod (June~July 2025)
+## ✅ TODOs (Future)
+- [ ] More detailed annotations
+- [ ] Docs of instructions for Replay Mod 
 - [ ] Optimization of the use of visualization tools (timer in Replay Mod code, viewer)
-- [ ] RL environment codes for Mineflayer (Jun.~Aug. 2025)
+- [ ] RL environment codes for Mineflayer 
 - [ ] Fix known bugs
 - [ ] Debugging and provide adaptation to normal python codes (w/o Jupyter notebook)
-- [ ] MineRL/MineDojo codes (in several months)
+- [ ] MineRL/MineDojo codes 
 
 
 
@@ -171,7 +171,7 @@ For different tasks in our MineAnyBuild, please conduct evaluation according to 
 
 
 ### Spatial Commonsense task
-1. Run the functions/scripts in `/mineanybuild/evaluator.py` following the below instructions.
+1. Run the functions/scripts `critic_spatial_commonsense()` (or `critic_spatial_commonsense_opensource()`) in `/mineanybuild/evaluator.py` following the below instructions.
     ```
     python /mineanybuild/evaluator.py --task Spatial_Commonsense
     ```
