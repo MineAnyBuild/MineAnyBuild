@@ -1,6 +1,6 @@
 <div align="center">
 <h2 align="center">
-   <b>MineAnyBuild: Benchmarking Spatial Planning for Open-world AI Agents
+   <b>MineAnyBuild: Benchmarking Spatial Planning for Open-world AI Agents</b>
    <!-- <br /> <font size=3>Under Review</font></b>  -->
 </h2>
 <div>
@@ -88,6 +88,7 @@ ______________________________________________________________________
     - [Proprietary MLLMs](#proprietary-mllms)
     - [Open-source MLLMs](#open-source-mllms)
 - [Citation](#citation)
+- [Acknowledgement](#acknowledgement)
 
 
 
@@ -128,7 +129,6 @@ pip install -r requirements.txt
 ```
 
 
-
 # Running codes
 
 (**Sorry for the delay due to some final exams. We'll make up this part as soon as possible.**)
@@ -142,7 +142,8 @@ For different tasks in our MineAnyBuild, please conduct evaluation according to 
 
 
 1. Start the Minecraft game and record the video with Replay Mod (recommended currently). 
-    <span style="font-family: 'Georgia', serif; font-size: 14px;"><br>1\) Start the recoding in Pause Menu of Minecraft game.
+    <span style="font-family: 'Georgia', serif; font-size: 14px;"><br>
+    1\) Start the recording in Pause Menu of Minecraft game.<br>
     2\) Run `/mineanybuild/mineflayer.ipynb` and specify the starting frame.<br>
     3\) Stop the recording when the notebook cells finish executing.<br>
     4\) Save and render the video in Replay Mod Menu.<br></span>
@@ -150,8 +151,7 @@ For different tasks in our MineAnyBuild, please conduct evaluation according to 
    
 
 2. Video Segmentation
-    <span style="font-family: 'Georgia', serif; font-size: 14px;">Split the video into multiple frames and match each frame to its corresponding building structure. We provide an example of using this in `/mineanybuild/utils.py`. You can use it to match automatically or conduct manual matching selection if less data is to be tested.</span>
-
+    <span style="font-family: 'Georgia', serif; font-size: 14px;">Split the video into multiple frames and match each frame to its corresponding building structure. We provide an example of using this in `frame_clipper` and `select_frames` functions of `/mineanybuild/utils.py`. You can use it to match automatically or conduct manual matching selection (recommended for accuracy) if less data is to be tested.</span>
 
 
 3. Run the functions/scripts in `/mineanybuild/evaluator.py` following the below instructions.
@@ -160,23 +160,23 @@ For different tasks in our MineAnyBuild, please conduct evaluation according to 
     ```
 
 
+4. Run the functions `calculate_scores_creativity()`, `calculate_scores_spatial_plan()`, `calculate_scores_spatial_understanding()` to calculate the final scores of the three tasks respectively.
+    
+
+
 ### Spatial Reasoning task
 
+1. Run the function `calculate_scores_spatial_reasoning()` in `/mineanybuild/evaluator.py` to calculate the *Accuracy* of the Spatial Reasoning task.
 
-1. Cauculate the SR(Success Rate) of the Spatial Reasoning task by running the following code.
-```
-
-```
 
 
 ### Spatial Commonsense task
-1. 
+1. Run the functions/scripts in `/mineanybuild/evaluator.py` following the below instructions.
     ```
     python /mineanybuild/evaluator.py --task Spatial_Commonsense
     ```
 
-2. Cauculate the SR(Success Rate) of the Spatial Reasoning task by running the following code.
-
+2. Run the function `calculate_scores_spatial_commonsense()` in `/mineanybuild/evaluator.py` to calculate the scores of the Spatial Commonsense task.
 
 
 
@@ -184,15 +184,22 @@ For different tasks in our MineAnyBuild, please conduct evaluation according to 
 ## Data curation
 
 
-1. run `/data_curation/customize_data.ipynb` to
+1. Run `/data_curation/customize_data.ipynb` to obtain the curated data.
 
 
-2. instruction
+2. Run the function ` ` in `/data_curation/utils.py` to process the data and format it in JSON.
 
 
-3. difficulty factor
+3. Generate instructions of some tasks for the curated architecture data.
+    ```
+    python 
+    ```
 
 
+4. Calculate the difficulty factor of new data.
+    ```
+    python /data_curation/calculate_difficulty.py
+    ```
 
 
 ## Inference of MLLM-based agents
@@ -207,12 +214,13 @@ python /mineanybuild/prompter.py --task [Spatial_Understanding|Spatial_Reasoning
 ```
 
 
-2. Run the `json_parser_blueprint` function in `/mineanybuild/utils.py` to transform the response of MLLM-based agents into *blueprint* 3D matrix in JSON format.
+2. Run the `json_parser_blueprint()` function in `/mineanybuild/utils.py` to transform the response of MLLM-based agents into *blueprint* 3D matrix in JSON format.
+
 
 
 ### Open-source MLLMs
 
-Run the following code based on the type of open-source MLLMs you want to run.
+1. Run the following codes based on the type of open-source MLLMs you want to run.
 
 ```
 python /mineanybuild/internvl.py --task [Spatial_Understanding|Spatial_Reasoning|Creativity|Executable_Spatial_Plan_Generation|Spatial_Commonsense]
@@ -220,7 +228,7 @@ python /mineanybuild/qwenvl.py --task [Spatial_Understanding|Spatial_Reasoning|C
 python /mineanybuild/llavaov.py --task [Spatial_Understanding|Spatial_Reasoning|Creativity|Executable_Spatial_Plan_Generation|Spatial_Commonsense]
 ```
 
-
+2. Run the `json_parser_blueprint()` function in `/mineanybuild/utils.py` to transform the response of MLLM-based agents into *blueprint* 3D matrix in JSON format.
 
 
 # Citation
@@ -234,5 +242,5 @@ If you find this work useful, please consider citing:
 }
 ```
 
-<!-- # Acknowledgement -->
-<!-- Some of the codes are built upon [APT](https://github.com/spearsheep/APT-Architectural-Planning-LLM-Agent). Thanks them for their great works! -->
+# Acknowledgement
+Some of the codes are built upon [APT](https://github.com/spearsheep/APT-Architectural-Planning-LLM-Agent). Thanks them for their great works!
