@@ -196,7 +196,7 @@ For data you want to curate by yourself, please follow the below steps.
 
 1. Prepare your own architectures/buildings/assets in your Minecraft maps. You can follow the template in the example file in `/examples/village_input.json` to annotate your data. 
 
-    ```json
+    ```js
     "plains_meeting_point_3": {       // architecture name
         "start_pos": [1, 5, -796],    // the X,Y,Z position of the left-bottom block of the architecture
         "end_pos": [11, 13, -786]     // the X,Y,Z position of the right-up block of the architecture
