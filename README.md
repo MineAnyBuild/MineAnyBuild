@@ -1,7 +1,7 @@
 <div align="center">
 <h2 align="center">
    <b>MineAnyBuild: Benchmarking Spatial Planning for Open-world AI Agents</b>
-   <!-- <br /> <b><font size=3>Under Review</font></b>  -->
+   <br /> <b><font size=3>NeurIPS 2025 Datasets and Benchmarks Track</font></b> 
 </h2>
 <div>
 <a href="http://sadil13.github.io/" target="_blank">Ziming&#160;Wei</a><sup>1*</sup>,
@@ -45,7 +45,7 @@ Spatial Planning is a crucial part in the field of spatial intelligence, which r
 
 
 ## 📰 Updates
-- [09/2025] 🎉🎉🎉 Our paper has been accepted as Poster by the NeurIPS 2025 Datasets and Benchmarks Track.
+- [09/2025] 🎉🎉🎉 Our paper has been accepted as Poster by **NeurIPS 2025 Datasets and Benchmarks Track**.
 - [05/2025] [Arxiv paper](https://arxiv.org/abs/2505.20148) released.
 
 
