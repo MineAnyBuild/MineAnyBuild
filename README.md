@@ -1,8 +1,8 @@
 <div align="center">
 <h2 align="center">
    <b>MineAnyBuild: Benchmarking Spatial Planning for Open-world AI Agents</b>
-   <br /> <b><font size=3>NeurIPS 2025 Datasets and Benchmarks Track</font></b> 
 </h2>
+<b><font size=3>NeurIPS 2025 Datasets and Benchmarks Track</font></b> 
 <div>
 <a href="http://sadil13.github.io/" target="_blank">Ziming&#160;Wei</a><sup>1*</sup>,
 <a href="https://expectorlin.github.io/" target="_blank">Bingqian&#160;Lin</a><sup>2*</sup>,
