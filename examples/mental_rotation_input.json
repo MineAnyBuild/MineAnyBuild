@@ -1,0 +1,22 @@
+{
+    "mental_rot_1": {
+        "start_pos": [-31, 4, -155],  
+        "end_pos": [-30, 6, -153]
+    },
+    "mental_rot_2": {
+        "start_pos": [-31, 4, -162],  
+        "end_pos": [-30, 6, -159]
+    },
+    "mental_rot_3": {
+        "start_pos": [-31, 4, -167],  
+        "end_pos": [-30, 7, -165]
+    },
+    "mental_rot_4": {
+        "start_pos": [-31, 4, -173],  
+        "end_pos": [-30, 6, -171]
+    },
+    "mental_rot_5": {
+        "start_pos": [-31, 4, -179],  
+        "end_pos": [-30, 8, -177]
+    }
+}

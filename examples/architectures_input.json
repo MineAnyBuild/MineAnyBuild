@@ -1,0 +1,67 @@
+{
+    "plains_meeting_point_3": {
+        "metadata": "minecraft:village/plains/town_centers/plains_meeting_point_3",
+        "start_pos": [
+            1,
+            5,
+            -796
+        ],
+        "end_pos": [
+            11,
+            13,
+            -786
+        ]
+    },
+    "plains_meeting_point_2": {
+        "metadata": "minecraft:village/plains/town_centers/plains_meeting_point_2",
+        "start_pos": [
+            1,
+            5,
+            -782
+        ],
+        "end_pos": [
+            8,
+            9,
+            -768
+        ]
+    },
+    "plains_meeting_point_1": {
+        "metadata": "minecraft:village/plains/town_centers/plains_meeting_point_1",
+        "start_pos": [
+            1,
+            5,
+            -764
+        ],
+        "end_pos": [
+            10,
+            11,
+            -755
+        ]
+    },
+    "plains_fountain_01": {
+        "metadata": "minecraft:village/plains/town_centers/plains_fountain_01",
+        "start_pos": [
+            1,
+            5,
+            -751
+        ],
+        "end_pos": [
+            9,
+            8,
+            -743
+        ]
+    },
+    "plains_weaponsmith_1": {
+        "metadata": "minecraft:village/plains/houses/plains_weaponsmith_1",
+        "start_pos": [
+            1,
+            5,
+            -474
+        ],
+        "end_pos": [
+            9,
+            12,
+            -464
+        ]
+    }
+}

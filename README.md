@@ -45,27 +45,18 @@ Spatial Planning is a crucial part in the field of spatial intelligence, which r
 
 
 ## 📰 Updates
+- [09/2025] 🎉🎉🎉 Our paper has been accepted as Poster by the NeurIPS 2025 Datasets and Benchmarks Track.
 - [05/2025] [Arxiv paper](https://arxiv.org/abs/2505.20148) released.
 
 
 
-## 🚨 TODOs (Urgency, To-be-completed in ~June 2025)
-- [x] Remaining codes for evaluation of MLLM-based agents (5 tasks)
-- [ ] Remaining codes for data curation (w/ example JSON files)
-- [x] Remaining codes for inference of MLLM-based agents (5 tasks)
+## 🚨 TODOs (all done and these items will be deleted in few weeks)
+- [x] Remaining codes for evaluation of MLLM-based agents (5 tasks).
+- [x] Remaining codes for data curation (w/ example JSON files).
+- [x] Remaining codes for inference of MLLM-based agents (5 tasks).
 - [x] Icons&urls for HuggingFace datasets, project webpage.
-- [ ] Upload files to Google Drive (e.g., pure map for evaluation).
-
-
-## ✅ TODOs (Future)
-- [ ] More detailed annotations
-- [ ] Docs of instructions for Replay Mod 
-- [ ] Optimization of the use of visualization tools (timer in Replay Mod code, viewer)
-- [ ] RL environment codes for Mineflayer 
-- [ ] Fix known bugs
-- [ ] Debugging and provide adaptation to normal python codes (w/o Jupyter notebook)
-- [ ] MineRL/MineDojo codes 
-
+- [x] Upload files to Hugging Face (e.g., pure map for evaluation).
+- [x] Curation codes for released data.
 
 
 ______________________________________________________________________
@@ -73,17 +64,21 @@ ______________________________________________________________________
 
 # Contents
 - [Contents](#contents)
-- [Installation](#installation)
+- [🔧Installation](#installation)
   - [Install Minecraft](#install-minecraft)
   - [Install packages](#install-packages)
   - [Create a Conda env and packages](#create-a-conda-env-and-packages)
-- [Running codes](#running-codes)
-  - [Evaluation](#evaluation)
+- [📥Downloads](#downloads)
+- [🚀Running codes](#running-codes)
+  - [📊Evaluation](#evaluation)
     - [Executable Spatial Plan Generation, Creativity and Spatial Understanding tasks](#executable-spatial-plan-generation-creativity-and-spatial-understanding-tasks)
     - [Spatial Reasoning task](#spatial-reasoning-task)
     - [Spatial Commonsense task](#spatial-commonsense-task)
-  - [Data curation](#data-curation)
-  - [Inference of MLLM-based agents](#inference-of-mllm-based-agents)
+  - [🗃️Data curation](#️data-curation)
+    - [Executable Spatial Plan Generation, Creativity and Spatial Understanding tasks](#executable-spatial-plan-generation-creativity-and-spatial-understanding-tasks-1)
+    - [Spatial Reasoning task](#spatial-reasoning-task-1)
+    - [Data standardization](#data-standardization)
+  - [🤖Inference of MLLM-based agents](#inference-of-mllm-based-agents)
     - [Proprietary MLLMs](#proprietary-mllms)
     - [Open-source MLLMs](#open-source-mllms)
 - [Citation](#citation)
@@ -92,7 +87,7 @@ ______________________________________________________________________
 
 
 
-# Installation
+# 🔧Installation
 
 ## Install Minecraft
 
@@ -122,17 +117,27 @@ npm install mineflayer
 ## Create a Conda env and packages
 
 ```
-conda create -n mineflayer python=3.10
-conda activate mineflayer
+conda create -n mineanybuild python=3.10
+conda activate mineanybuild
 pip install -r requirements.txt
 ```
 
+# 📥Downloads
 
-# Running codes
+Download Links |  Description |
+:--- | :--- |
+[Hugging Face](https://huggingface.co/datasets/SaDil/MineAnyBuild)|Datasets for MineAnyBuild tasks, including task instructions, architectures and stimuli data. |
+[Hugging Face](https://huggingface.co/datasets/SaDil/MineAnyBuild)|Pure maps in Maps_Evaluation.zip for evaluation. |
+[Hugging Face](https://huggingface.co/datasets/SaDil/MineAnyBuild-Raw_data)|Raw HTML data fetched from Grabcraft, namely Grabcraft_raw_data.rar.|
+<!-- [Hugging Face](111)|111| -->
+
+
+
+# 🚀Running codes
 
 <!-- (**Sorry for the delay due to some final exams. We'll make up this part as soon as possible.**) -->
 
-## Evaluation
+## 📊Evaluation
 You should run the [Inference of MLLM-based agents](#inference-of-mllm-based-agents) first to generate the responses of MLLM-based agents.
 
 For different tasks in our MineAnyBuild, please conduct evaluation according to the following steps respectively.
@@ -141,12 +146,12 @@ For different tasks in our MineAnyBuild, please conduct evaluation according to 
 
 
 1. Start the Minecraft game and record the video with Replay Mod (recommended currently). 
-    <span style="font-family: 'Georgia', serif; font-size: 14px;"><br>
-    1\) Start the recording in Pause Menu of Minecraft game.<br>
-    2\) Run `/mineanybuild/mineflayer.ipynb` and specify the starting frame.<br>
-    3\) Stop the recording when the notebook cells finish executing.<br>
-    4\) Save and render the video in Replay Mod Menu.<br></span>
-    <span style="font-family: 'Times New Roman', serif; font-size: 14px;"><i> (For the concrete instructions, please refer to the [Replay Mod documentation](https://www.replaymod.com/) and Section B.3.2 in the Supplementary Material. We will provide a Doc for usage instructions of Replay Mod in several weeks.)</i></span>
+    <span style="font-family: 'Georgia', serif; font-size: 14px;">
+    1\) Start the recording in Pause Menu of Minecraft game.
+    2\) Run `/mineanybuild/mineflayer.ipynb` and specify the starting frame.
+    3\) Stop the recording when the notebook cells finish executing.
+    4\) Save and render the video in Replay Mod Menu.</span>
+    <span style="font-family: 'Times New Roman', serif; font-size: 14px;"><i> (For the concrete instructions, please refer to the [Replay Mod documentation](https://www.replaymod.com/) and Section B.3.2 in the Supplementary Material. We provide a document for usage instructions of Replay Mod in [docs/replay_mod.md](docs/replay_mod.md).)</i></span>
    
 
 2. Video Segmentation
@@ -181,28 +186,67 @@ For different tasks in our MineAnyBuild, please conduct evaluation according to 
 
 
 
+## 🗃️Data curation
 
-## Data curation
+### Executable Spatial Plan Generation, Creativity and Spatial Understanding tasks
 
-1. Run `/data_curation/customize_data.ipynb` to obtain the curated data.
+For the released data on HuggingFace, you can refer the codes in the dirpath `/data_curation`, e.g., [data_curation/gen_data_released.py](data_curation/gen_data_released.py).
 
+For data you want to curate by yourself, please follow the below steps.
 
-2. Run the function ` ` in `/data_curation/utils.py` to process the data and format it in JSON.
+1. Prepare your own architectures/buildings/assets in your Minecraft maps. You can follow the template in the example file in `/examples/village_input.json` to annotate your data. 
 
-
-3. Generate instructions of some tasks for the curated architecture data.
+    ```json
+    "plains_meeting_point_3": {       // architecture name
+        "start_pos": [1, 5, -796],    // the X,Y,Z position of the left-bottom block of the architecture
+        "end_pos": [11, 13, -786]     // the X,Y,Z position of the right-up block of the architecture
+    },
+    ...
     ```
-    python 
-    ```
+
+    By manually annotating the above data, you can directly obtain curated data through the following automated pipeline.
+
+2. Run `/data_curation/customize_data.ipynb` to obtain the curated data. 
+
+   *Optional: If the JSON format is not completely correct, run the function `process_json()` in `/data_curation/utils.py` to process the data and format it in JSON.*
 
 
-4. Calculate the difficulty factor of new data.
+3. Run the main function `curate_architecture_datasets()` for reference in `/data_curation/gen_data_customized.py` to curate the datasets and generate instructions for different tasks.
+
+
+4. [Optional] Calculate the difficulty factor of new data.
     ```
     python /data_curation/calculate_difficulty.py
     ```
 
 
-## Inference of MLLM-based agents
+### Spatial Reasoning task
+
+For the released data on HuggingFace, you can refer codes in [data_curation/gen_data_released.py](data_curation/gen_data_released.py).
+
+For data you want to curate by yourself, please follow the below steps.
+
+
+1. Prepare your own stimuli structures built in your Minecraft map. You can follow the template in the example file in `/examples/mental_rotation_input.json` to annotate your data. 
+
+2. Run `/data_curation/customize_data.ipynb` to obtain the curated data. 
+
+   *Optional: If the JSON format is not completely correct, run the function `process_json()` in `/data_curation/utils.py` to process the data and format it in JSON.*
+
+
+3. Run the main function `curate_spatial_reasoning_datasets()` for reference in `/data_curation/gen_data_customized.py` to curate the datasets and generate VQAs data for this task.
+
+
+
+### Data standardization
+Run the functions/scripts in `/data_curation/unify_data.py` following the below instructions.
+
+```
+python unify_data.py --task [Spatial_Understanding|Creativity|Executable_Spatial_Plan_Generation|Spatial_Reasoning|Spatial_Commonsense]
+```
+
+
+## 🤖Inference of MLLM-based agents
 Specify your API keys for each models.
 
 Run the following codes to perform inference for MLLM-based agents.
@@ -233,6 +277,23 @@ python /mineanybuild/llavaov.py --task [Spatial_Understanding|Spatial_Reasoning|
 2. Run the `json_parser_blueprint()` function in `/mineanybuild/utils.py` to transform the response of MLLM-based agents into *blueprint* 3D matrix in JSON format.
 
 
+
+<details>
+    <summary><strong>✅Planned Future Updates</strong></summary>
+    <ul>
+        <li>More detailed annotations</li>
+        <li>Docs of instructions for Replay Mod</li>
+        <li>Optimization of the use of visualization tools (timer in Replay Mod code, viewer)</li>
+        <li>RL environment codes for Mineflayer</li>
+        <li>Fix known bugs</li>
+        <li>Debugging and provide adaptation to normal python codes (w/o Jupyter notebook)</li>
+        <li>MineRL/MineDojo codes</li>
+    </ul>
+</details>
+
+
+
+
 # Citation
 If you find this work useful, please consider citing:
 ```bibtex
@@ -245,4 +306,4 @@ If you find this work useful, please consider citing:
 ```
 
 # Acknowledgement
-Some of the codes are built upon [APT](https://github.com/spearsheep/APT-Architectural-Planning-LLM-Agent). Thanks them for their great works!
+Some of the codes are built upon [APT](https://github.com/spearsheep/APT-Architectural-Planning-LLM-Agent). Part of our datasets are built upon [GrabCraft](https://www.grabcraft.com), [Minecraft Wiki](https://minecraft.fandom.com/wiki/Minecraft_Wiki) and [Raekon](https://www.patreon.com/Raekon). Thanks them for their great works and resources!
